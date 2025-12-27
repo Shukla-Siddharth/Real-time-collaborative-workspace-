@@ -8,6 +8,10 @@ spring:
     user:
      name: admin
      password: admin
+    jwt:
+     secret: super-secret-key-change-this
+     access-token-expiry-minutes: 15
+     refresh-token-expiry-days: 7
 
   jpa:
     hibernate:
