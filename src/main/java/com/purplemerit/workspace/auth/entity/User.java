@@ -32,4 +32,7 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @Column(length = 1000)
+    private String refreshToken;
 }

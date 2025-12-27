@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.UUID;
 
 @Service
 public class JwtTokenService {
@@ -17,15 +18,10 @@ public class JwtTokenService {
     @Value("${security.jwt.access-token-expiry-minutes}")
     private long accessTokenExpiryMinutes;
 
-    @Value("${security.jwt.refresh-token-expiry-days}")
-    private long refreshTokenExpiryDays;
-
     public String generateAccessToken(User user) {
-
         return Jwts.builder()
-                .setSubject(user.getId().toString())           // User identity
-                .claim("email", user.getEmail())               // Useful metadata
-                .claim("role", user.getRole().name())          // ✅ RBAC
+                .setSubject(user.getId().toString())
+                .claim("role", user.getRole().name())
                 .setIssuedAt(new Date())
                 .setExpiration(
                         new Date(System.currentTimeMillis()
@@ -36,14 +32,6 @@ public class JwtTokenService {
     }
 
     public String generateRefreshToken() {
-
-        return Jwts.builder()
-                .setIssuedAt(new Date())
-                .setExpiration(
-                        new Date(System.currentTimeMillis()
-                                + refreshTokenExpiryDays * 24 * 60 * 60 * 1000)
-                )
-                .signWith(SignatureAlgorithm.HS256, jwtSecret)
-                .compact();
+        return UUID.randomUUID().toString();
     }
 }

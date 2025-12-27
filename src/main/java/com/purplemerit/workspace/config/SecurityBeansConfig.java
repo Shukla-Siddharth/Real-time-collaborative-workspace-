@@ -1,4 +1,4 @@
-package com.purplemerit.workspace.auth.security;
+package com.purplemerit.workspace.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
