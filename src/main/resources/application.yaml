@@ -6,12 +6,8 @@ spring:
 
   security:
     user:
-     name: admin
-     password: admin
-    jwt:
-     secret: super-secret-key-change-this
-     access-token-expiry-minutes: 15
-     refresh-token-expiry-days: 7
+      name: admin
+      password: admin
 
   jpa:
     hibernate:
@@ -21,3 +17,8 @@ spring:
         jdbc:
           time_zone: UTC
 
+security:
+  jwt:
+    secret: super-secret-dev-key-change-in-prod
+    access-token-expiry-minutes: 15
+    refresh-token-expiry-days: 7
